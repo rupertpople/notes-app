@@ -1,12 +1,13 @@
 const notesModel = require('./notesModel');
 
 describe('notesModel class', () => {
-  test('model.getNotes on new model returns empty notes array', () => {
+
+  test('#getNotes on new model returns empty notes array', () => {
     let model = new notesModel();
     expect(model.getNotes()).toEqual([]);
   });
 
-  test('model.addNote() adds items to the notes array', () => {
+  test('#addNote adds items to the notes array', () => {
     let model = new notesModel();
     model.addNote('Buy milk');
     model.addNote('Go to the gym');
@@ -15,4 +16,12 @@ describe('notesModel class', () => {
       'Go to the gym'
     ]);
   });
+
+  test('#reset deletes existing notes to return to empty notes array', () => {
+    let model = new notesModel();
+    model.addNote('Buy milk');
+    model.addNote('Go to the gym');
+    model.reset();
+    expect(model.getNotes()).toEqual([]);
+  })
 });
