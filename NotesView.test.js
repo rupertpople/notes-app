@@ -5,6 +5,7 @@
 const fs = require('fs');
 const { hasUncaughtExceptionCaptureCallback } = require('process');
 const NotesView = require('./NotesView');
+const notesModel = require('./notesModel')
 
 const mockedModel = {
   getNotes: () => {
@@ -16,7 +17,9 @@ describe('NotesView', () => {
   describe('.displayNotes', () => {
     it("gets the notes from model and displays it as a new div element with class 'note'", () => {
       document.body.innerHTML = fs.readFileSync('./index.html');
-      const notesView = new NotesView(mockedModel);
+      const model = new notesModel
+      model.addNote('This is an example note');
+      const notesView = new NotesView(model);
 
       notesView.displayNotes();
 
