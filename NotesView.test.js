@@ -27,5 +27,17 @@ describe('NotesView', () => {
 
     })
   })
+  describe('.addNote', () => {
+    it('addes a note which is then added to the list of notes displayed', () => {
+      document.body.innerHTML = fs.readFileSync('./index.html')
+      const view = new NotesView
+      const messageInput = document.querySelector('#add-note-text')
+      messageInput.value = 'Walk the dogs'
+      const addNotebuttonEl = document.querySelector('#add-note-button')
+      addNotebuttonEl.click()
+      const notes = document.querySelector('div.note')
+      expect(notes.innerText).toEqual('Walk the dogs')
+    })
+  })
 
 })
