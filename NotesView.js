@@ -10,11 +10,16 @@ class NotesView {
 
     this.buttonEl.addEventListener('click', () => {
       this.model.addNote(this.textFieldEl.value)
+      this.textFieldEl.value = '';
       this.displayNotes();
     })
   }
 
   displayNotes() {
+    document.querySelectorAll('div.note').forEach(note => {
+      note.remove();
+    });
+
     this.notes = this.model.getNotes();
     for (let i = 0; i < this.notes.length; i++) {
       let newElement = document.createElement('div');
