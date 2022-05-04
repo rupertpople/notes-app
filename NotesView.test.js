@@ -3,9 +3,8 @@
  */
 
 const fs = require('fs');
-const { hasUncaughtExceptionCaptureCallback } = require('process');
 const NotesView = require('./NotesView');
-const notesModel = require('./notesModel')
+const NotesModel = require('./notesModel')
 
 const mockedModel = {
   getNotes: () => {
@@ -17,7 +16,7 @@ describe('NotesView', () => {
   describe('.displayNotes', () => {
     it("gets the notes from model and displays it as a new div element with class 'note'", () => {
       document.body.innerHTML = fs.readFileSync('./index.html');
-      const model = new notesModel
+      const model = new NotesModel
       model.addNote('This is an example note');
       const notesView = new NotesView(model);
 
@@ -28,7 +27,7 @@ describe('NotesView', () => {
 
     it('correct number of notes are displayed when display notes is called twice', () => {
       document.body.innerHTML = fs.readFileSync('./index.html');
-      const model = new notesModel
+      const model = new NotesModel
       model.addNote('This is an example note');
       const notesView = new NotesView(model);
 
